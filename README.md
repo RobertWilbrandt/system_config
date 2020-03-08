@@ -37,3 +37,12 @@ LC_TELEPHONE="de_DE.UTF-8"
 LC_MEASUREMENT="de_DE.UTF-8"
 LC_IDENTIFICATION="de_DE.UTF-8"
 ```
+
+## Setup zsh as default shell
+
+You first need to install zsh, and then use the ```chsh``` command to set it as default:
+
+```console
+sudo apt install zsh
+chsh -s /usr/bin/zsh
+```
