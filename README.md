@@ -46,3 +46,22 @@ You first need to install zsh, and then use the ```chsh``` command to set it as 
 sudo apt install zsh
 chsh -s /usr/bin/zsh
 ```
+
+## Setup Oh My Zsh
+
+Install Oh My Zsh as described in [the ohmyzsh README](https://github.com/ohmyzsh/ohmyzsh):
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+You should not let it create a ```~/.zshrc``` file (or delete it afterwards), as this will be supplied by this package.
+
+## Install the config files from this repo
+
+First, you need to install [GNU Stow](https://www.gnu.org/software/stow/). This is used by the ```install.sh``` script to setup dotfiles.
+
+```console
+sudo apt install stow
+./install.sh
+```
