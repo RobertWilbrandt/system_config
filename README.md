@@ -57,6 +57,21 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 You should not let it create a ```~/.zshrc``` file (or delete it afterwards), as this will be supplied by this package.
 
+## Disable CPU frequency scaling
+
+In some applications you might want to disable cpu frequency scaling to avoid changes in performance. The procedure to do this is described on [the Franka Emika troubleshooting page](https://frankaemika.github.io/docs/troubleshooting.html). The required steps are:
+
+```console
+sudo apt install cpufrequtils
+sudo systemctl disable ondemand
+sudo systemctl enable cpufrequtils
+sudo sh -c 'echo "GOVERNOR=performance" > /etc/default/cpufrequtils'
+sudo systemctl deamon-reload
+sudo systemctl restart cpufrequtils
+```
+
+You can check the result using the ```cpufreq-info``` command, the "current policy" section should list the current governor for each CPU as "performance".
+
 ## Install the config files from this repo
 
 First, you need to install [GNU Stow](https://www.gnu.org/software/stow/). This is used by the ```install.sh``` script to setup dotfiles.
