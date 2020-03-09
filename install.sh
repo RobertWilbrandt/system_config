@@ -36,10 +36,13 @@ cd ..
 
 echo "Stowing configuration..."
 
-stow_dirs="shell profile_plugins"
+stow_dirs="shell vim profile_plugins"
 
 for dir in "$stow_dirs" ; do
   stow $dir
 done
+
+# Install/update vim plugins
+vim -c "PlugUpdate" -c "PlugInstall" -c "q" -c "q"
 
 echo "Done"
