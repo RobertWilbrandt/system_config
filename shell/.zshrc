@@ -70,6 +70,8 @@ ZSH_THEME="bureau"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+autoload -U bashcompinit && bashcompinit
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
