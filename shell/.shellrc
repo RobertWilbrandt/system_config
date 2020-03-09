@@ -1,0 +1,6 @@
+
+# Load local shellrc if such a file exists
+if [ -f ".shellrc_local" ];
+then
+  source ".shellrc_local"
+fi
