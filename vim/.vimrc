@@ -23,12 +23,16 @@ syntax enable
 imap <C-S-v> <Esc>"+p
 vmap <C-S-c> "+y
 
-set spell spelllang=en_us
-
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
-" Treat launch files as xml files
-autocmd BufNewFile,BufRead *.launch setfiletype xml
+autocmd BufNewFile,BufRead *.launch setfiletype xml " Treat launch files as xml files
+autocmd BufNewFile,BufRead *.md setfiletype markdown
+autocmd BufNewFile,BufRead *.txt setfiletype text
+
+" Enable spell checking only on specific file types
+set spelllang=en
+autocmd FileType markdown setlocal spell
+autocmd FileType text setlocal spell
 
 source $HOME/.vim/plugin/plugins.vim
