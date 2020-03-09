@@ -1,3 +1,4 @@
+source $HOME/.profile_plugins/extra_plugins.sh
 
 # Load local shellrc if such a file exists
 if [ -f ".shellrc_local" ];
