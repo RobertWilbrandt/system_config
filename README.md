@@ -47,16 +47,6 @@ sudo apt install zsh
 chsh -s /usr/bin/zsh
 ```
 
-## Setup Oh My Zsh
-
-Install Oh My Zsh as described in [the ohmyzsh README](https://github.com/ohmyzsh/ohmyzsh):
-
-```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-You should not let it create a ```~/.zshrc``` file (or delete it afterwards), as this will be supplied by this package.
-
 ## Disable CPU frequency scaling
 
 In some applications you might want to disable cpu frequency scaling to avoid changes in performance. The procedure to do this is described on [the Franka Emika troubleshooting page](https://frankaemika.github.io/docs/troubleshooting.html). The required steps are:

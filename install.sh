@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ ! -d "$HOME/.oh-my-zsh" ] ;
+then
+  RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  rm -f "$HOME/.zshrc"
+fi
 
 # Make sure git directory exists
 if [ ! -d "git" ] ;
