@@ -26,8 +26,12 @@ let g:tagbar_autoclose = 1
 
 " clang-format
 let g:clang_format#detect_style_file = 1
-nmap <Leader>C :ClangFormat <CR>
-vmap <Leader>C :ClangFormat <CR>
+" Disable shortcut by default to avoid confusion
+nmap <Leader>C <Nop>
+vmap <Leader>C <Nop>
+" Enable it for cpp files
+autocmd FileType cpp nmap <Leader>C :ClangFormat <CR>
+autocmd FileType cpp vmap <Leader>C :ClangFormat <CR>
 
 " NERDtree
 let g:NERDTreeQuitOnOpen=1
