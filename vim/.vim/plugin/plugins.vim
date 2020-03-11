@@ -11,6 +11,7 @@ Plug 'fmauch/YCM-Generator', { 'branch': 'stable' } " Generate ycm_extra_conf fi
 Plug 'jiangmiao/auto-pairs' " Add paranthesis, brackets, ... in pairs
 Plug 'majutsushi/tagbar' " give outline of cpp structures defined in the current file
 Plug 'ntpeters/vim-better-whitespace' " highlight whitespaces at line ends
+Plug 'nvie/vim-flake8' " python pep 8 checker
 Plug 'richq/vim-cmake-completion'
 Plug 'rhysd/vim-clang-format' " automate code formatting
 Plug 'scrooloose/nerdtree' " file system expolorer
@@ -23,6 +24,11 @@ call plug#end()
 " Tagbar
 nmap <C-t> :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
+
+" vim-flake8
+autocmd FileType python nmap <Leader>C  :call flake8#Flake8()<CR>
+autocmd FileType python vmap <Leader>C  :call flake8#Flake8()<CR>
+let g:flake8_show_in_file=1
 
 " clang-format
 let g:clang_format#detect_style_file = 1
