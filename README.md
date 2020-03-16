@@ -64,9 +64,11 @@ You can check the result using the ```cpufreq-info``` command, the "current poli
 
 ## Install the config files from this repo
 
-First, you need to install [GNU Stow](https://www.gnu.org/software/stow/). This is used by the ```install.sh``` script to setup dotfiles.
+After installing some needed packages, you can just pull this repository and use the supplied install script.
 
 ```console
-sudo apt install stow
+sudo apt install git stow python-pip vim cmake
+git clone git@github.com:RobertWilbrandt/system_config.git
+cd system_config
 ./install.sh
 ```
