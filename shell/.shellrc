@@ -1,7 +1,7 @@
 source $HOME/.profile_plugins/extra_plugins.sh
 
 # Load local shellrc if such a file exists
-if [ -f ".shellrc_local" ];
+if [ -f "$HOME/.shellrc_local" ];
 then
-  source ".shellrc_local"
+  source "$HOME/.shellrc_local"
 fi
