@@ -26,18 +26,10 @@ nmap <C-t> :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
 
 " vim-flake8
-autocmd FileType python nmap <Leader>C  :call flake8#Flake8()<CR>
-autocmd FileType python vmap <Leader>C  :call flake8#Flake8()<CR>
 let g:flake8_show_in_file=1
 
 " clang-format
 let g:clang_format#detect_style_file = 1
-" Disable shortcut by default to avoid confusion
-nmap <Leader>C <Nop>
-vmap <Leader>C <Nop>
-" Enable it for cpp files
-autocmd FileType cpp nmap <Leader>C :ClangFormat <CR>
-autocmd FileType cpp vmap <Leader>C :ClangFormat <CR>
 
 " NERDtree
 let g:NERDTreeQuitOnOpen=1
@@ -51,8 +43,6 @@ let g:ycm_echo_current_diagnostic = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_max_diagnostics_to_display = 0
-
-nmap <Leader>T :YcmCompleter GetType <CR>
 
 " vim airline
 let g:airline#extensions#tabline#enabled = 1
