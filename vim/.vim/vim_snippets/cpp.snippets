@@ -1,0 +1,6 @@
+snippet header-guard "#ifndef ... #define ... #endif" b
+#ifndef $1_$2_H
+#define ${1:PACKAGE}_${2:`!p snip.rv = snip.basename.upper()`}_H
+
+#endif // ifndef $1_$2_H
+endsnippet

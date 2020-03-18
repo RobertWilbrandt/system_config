@@ -15,6 +15,7 @@ Plug 'nvie/vim-flake8' " python pep 8 checker
 Plug 'richq/vim-cmake-completion'
 Plug 'rhysd/vim-clang-format' " automate code formatting
 Plug 'scrooloose/nerdtree' " file system expolorer
+Plug 'sirver/ultisnips' " snippets
 Plug 'valloric/YouCompleteMe', { 'do': './install.py --clang-completer' } " Code completion
 Plug 'vim-airline/vim-airline' " better status line
 Plug 'vim-scripts/DoxygenToolkit.vim' " doxygen integration
@@ -34,6 +35,13 @@ let g:clang_format#detect_style_file = 1
 " NERDtree
 let g:NERDTreeQuitOnOpen=1
 nmap <Leader>t :NERDTreeToggle<CR>
+
+" UltiSnips
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/vim_snippets']
+let g:UltiSnipsEditSplit = 'context'
+let g:UltiSnipsExpandTrigger="<c-k>" " Cannot use just tab because of YCM
+let g:UltiSnipsJumpForwardTrigger="<c-x>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " YCM
 let g:ycm_auto_trigger = 1
