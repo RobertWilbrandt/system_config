@@ -1,0 +1,47 @@
+snippet roslaunchxml "<?xml ...> <launch> ... </launch>" b
+<?xml version="1.0"?>
+
+<launch>
+  
+</launch>
+endsnippet
+
+
+
+snippet rosurdfmacro "<?xml ...?> ... <xacro:macro ...>" b
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="${1:`!p snip.rv = snip.basename`}" params="$2">
+
+    
+
+  </xacro:macro>
+
+</robot>
+endsnippet
+
+
+
+snippet rosurdfrobot "<?xml ...?> ... <robot ... name ...> ..." b
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="${1:ROBOT}">
+
+</robot>
+endsnippet
+
+snippet rosurdffixedjoint "<joint ... type='fixed'> ... </joint>"
+<joint name="${1:JOINT}" type="fixed">
+  <parent link="${2:PARENT}" />
+  <child link="${3:CHILD}" />
+  <origin xyz="${4:0 0 0}" rpy="${5:0 0 0}" />
+</joint>
+endsnippet
+
+
+
+snippet rospackageexecdep "<exec_dep> ... </exec_dep>"
+<exec_depend>${1:PACKAGE}</exec_depend>
+endsnippet
