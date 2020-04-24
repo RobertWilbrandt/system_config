@@ -1,3 +1,20 @@
+global !p
+import os
+
+def cur_dir():
+  full_dir = os.path.dirname(os.path.join(os.getcwd(), path))
+  return os.path.split(full_dir)[-1]
+
+def file_basename():
+  return fn.split('.')[0]
+
+endglobal
+
+
+
+#
+# ROS Launch snippets
+#
 snippet roslaunchxml "<?xml ...> <launch> ... </launch>" b
 <?xml version="1.0"?>
 
@@ -8,12 +25,22 @@ endsnippet
 
 
 
-snippet rosurdfmacro "<?xml ...?> ... <xacro:macro ...>" b
+snippet roslaunchnode "<node pkg=...> </node>" b
+<node name="${1:NAME}" pkg="${2:$1}" type="${3:$2}" output="screen">
+</node>
+endsnippet
+
+
+
+#
+# ROS xacro&urdf snippets
+#
+snippet rosxacromacro "<?xml ...?> ... <xacro:macro ...>" b
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:macro name="${1:`!p snip.rv = snip.basename`}" params="$2">
+  <xacro:macro name="${1:`!p snip.rv = file_basename()`}" params="$2">
 
     
 
@@ -29,8 +56,12 @@ snippet rosurdfrobot "<?xml ...?> ... <robot ... name ...> ..." b
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="${1:ROBOT}">
 
+  
+
 </robot>
 endsnippet
+
+
 
 snippet rosurdffixedjoint "<joint ... type='fixed'> ... </joint>"
 <joint name="${1:JOINT}" type="fixed">
@@ -42,6 +73,28 @@ endsnippet
 
 
 
+#
+# ROS package xml snippets
+#
 snippet rospackageexecdep "<exec_dep> ... </exec_dep>"
 <exec_depend>${1:PACKAGE}</exec_depend>
+endsnippet
+
+
+
+snippet rospackagexml "<package>...</package>" b
+<?xml version="1.0"?>
+<package format="2">
+  <name>${1:`!p snip.rv = cur_dir()`}</name>
+  <version>0.0.0</version>
+  <description>${2:DESCRIPTION}</description>
+
+  <maintainer email="${3:`git config user.email`}">${4:`git config user.name`}</maintainer>
+
+  <license>${5:TODO}</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export />
+</package>
 endsnippet
