@@ -1,6 +1,32 @@
 # system_config
 Initial system configuration setup
 
+## Managing Users and Hostname
+
+You can set the hostname by using
+
+```console
+sudo hostnamectl set-hostname <hostname>
+```
+
+In order to add a user, use
+
+```console
+sudo adduser <username> # Important: don't confuse this with useradd
+```
+
+You can add a new user to a group (e.g. ```sudo```) by using
+
+```console
+sudo usermod <username> -aG <group>
+```
+
+If you want to change your password later, use
+
+```console
+passwd # Beware: running this with sudo will change the root password, not yours
+```
+
 ## Install i3 window manager
 
 To install the i3 window manager with the default status bar and the dmenu_run launcher use
@@ -29,7 +55,7 @@ LC_NUMERIC="de_DE.UTF-8"
 LC_TIME="de_DE.UTF-8"
 LC_COLLATE="de_DE.UTF-8"
 LC_MONETARY="de_DE.UTF-8"
-LC_MESSAGES="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8" # This is used by e.g. man and apt to pick text language
 LC_PAPER="de_DE.UTF-8"
 LC_NAME="de_DE.UTF-8"
 LC_ADDRESS="de_DE.UTF-8"
