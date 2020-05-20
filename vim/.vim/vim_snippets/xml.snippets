@@ -76,6 +76,10 @@ endsnippet
 #
 # ROS package xml snippets
 #
+snippet rospackagedep "<depend>...</depend>"
+<depend>${1:PACKAGE}</exec_depen>
+endsnippet
+
 snippet rospackageexecdep "<exec_dep> ... </exec_dep>"
 <exec_depend>${1:PACKAGE}</exec_depend>
 endsnippet
