@@ -7,11 +7,11 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter' " show git diff in file
+Plug 'dense-analysis/ale' " Linters & fixers
 Plug 'fmauch/YCM-Generator', { 'branch': 'stable' } " Generate ycm_extra_conf files
 Plug 'jiangmiao/auto-pairs' " Add paranthesis, brackets, ... in pairs
 Plug 'majutsushi/tagbar' " give outline of cpp structures defined in the current file
 Plug 'ntpeters/vim-better-whitespace' " highlight whitespaces at line ends
-Plug 'nvie/vim-flake8' " python pep 8 checker
 Plug 'richq/vim-cmake-completion'
 Plug 'rhysd/vim-clang-format' " automate code formatting
 Plug 'scrooloose/nerdtree' " file system expolorer
@@ -21,6 +21,12 @@ Plug 'vim-airline/vim-airline' " better status line
 Plug 'vim-scripts/DoxygenToolkit.vim' " doxygen integration
 
 call plug#end()
+
+" Ale
+let g:ale_linters = {'python': ['flake8', 'pylint']}
+let g:ale_fixers = {'python': ['black', 'isort']}
+let g:ale_python_flake8_options = "--max-line-length=88"
+let g:ale_lint_on_text_changed = "never"
 
 " Tagbar
 nmap <C-t> :TagbarToggle<CR>

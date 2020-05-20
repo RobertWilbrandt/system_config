@@ -43,7 +43,8 @@ for dir in "$stow_dirs" ; do
 done
 
 # Install/update vim plugins
-pip install --user flake8 # Required for flake8 plugin
+pip install --user flake8 pylint # linting for python
+pip3 install --user black # black python linter
 vim -c "PlugUpdate" -c "PlugInstall" -c "q" -c "q"
 
 echo "Done"
