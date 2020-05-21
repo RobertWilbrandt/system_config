@@ -93,7 +93,7 @@ You can check the result using the ```cpufreq-info``` command, the "current poli
 After installing some needed packages, you can just pull this repository and use the supplied install script.
 
 ```console
-sudo apt install git stow python-pip python3-pip vim cmake
+sudo apt install git stow python-pip python3-pip vim cmake libxml2-utils
 git clone git@github.com:RobertWilbrandt/system_config.git
 cd system_config
 ./install.sh
