@@ -1,0 +1,5 @@
+[user]
+	email = robert@stamm-wilbrandt.de
+	name = Robert Wilbrandt
+[core]
+	excludesfile = ~/.gitignore_global
