@@ -20,6 +20,10 @@ Plug 'valloric/YouCompleteMe', { 'do': './install.py --clang-completer' } " Code
 Plug 'vim-airline/vim-airline' " better status line
 Plug 'vim-scripts/DoxygenToolkit.vim' " doxygen integration
 
+if executable('latex')
+  Plug 'lervag/vimtex'
+endif
+
 call plug#end()
 
 " Ale
@@ -62,6 +66,11 @@ let g:ycm_echo_current_diagnostic = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_max_diagnostics_to_display = 0
+" vimtex integration
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
 " vim airline
 let g:airline#extensions#tabline#enabled = 1
@@ -88,3 +97,8 @@ let g:DoxygenToolkit_classTag="\\class "
 let g:DoxygenToolkit_blockTag="\\name"
 let g:DoxygenToolkit_startCommentTag="/** "
 let g:DoxygenToolkit_startCommentBlock="/* "
+
+" vimtex
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
