@@ -5,7 +5,66 @@ def snake_to_camel_case(text):
   words = text.split('_')
   return ''.join([w.title() for w in words])
 
+def current_git_user_name():
+  import git
+  repo = git.Repo(search_parent_directories=True)
+  return repo.config_reader().get_value("user", "name")
+
+def current_git_user_email():
+  import git
+  repo = git.Repo(search_parent_directories=True)
+  return repo.config_reader().get_value("user", "email")
+
 endglobal
+
+snippet header-h "Standard file header for header files" b
+// this is for emacs file handling -*- mode: c++; indent-tabs-mode: nil -*-
+
+// -- BEGIN LICENSE BLOCK ----------------------------------------------
+// -- END LICENSE BLOCK ------------------------------------------------
+
+//----------------------------------------------------------------------
+/*!\file
+ *
+ * \author  ${1:`!p snip.rv = current_git_user_name()`} <${2:`!p snip.rv = current_git_user_email()`}>
+ * \date    ${3:`!p snip.rv = datetime.datetime.now().date().isoformat()`}
+ *
+ */
+//----------------------------------------------------------------------
+#ifndef ${4:PACKAGE}_${5:FILE}_H_INCLUDED
+#define $4_$5_H_INCLUDED
+
+namespace ${6:NAMESPACE} {
+
+} // namespace $6
+
+#endif // $4_$5_H_INCLUDED
+endsnippet
+
+
+
+snippet header-cpp "Standard file header for source files" b
+// this is for emacs file handling -*- mode: c++; indent-tabs-mode: nil -*-
+
+// -- BEGIN LICENSE BLOCK ----------------------------------------------
+// -- END LICENSE BLOCK ------------------------------------------------
+
+//----------------------------------------------------------------------
+/*!\file
+ *
+ * \author  ${1:`!p snip.rv = current_git_user_name()`} <${2:`!p snip.rv = current_git_user_email()`}>
+ * \date    ${3:`!p snip.rv = datetime.datetime.now().date().isoformat()`}
+ *
+ */
+//----------------------------------------------------------------------
+#include "${4:PACKAGE}/${5:FILE}.h"
+
+namespace ${6:NAMESPACE} {
+
+} // namespace $6
+endsnippet
+
+
 
 snippet header-guard "#ifndef ... #define ... #endif" b
 #ifndef $1_$2_H
