@@ -1,0 +1,14 @@
+---
+- name: Set keyboard layout
+  lineinfile:
+    path: '/etc/default/keyboard'
+    regexp: '^XKBLAYOUT='
+    line: 'XKBLAYOUT="{{ layout }}"'
+  become: yes
+
+- name: Set keyboard variant
+  lineinfile:
+    path: '/etc/default/keyboard'
+    regexp: '^XKBVARIANT='
+    line: 'XKBVARIANT="{{ variant }}"'
+  become: yes
