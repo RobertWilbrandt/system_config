@@ -1,0 +1,7 @@
+---
+- name: Install common tools
+  apt:
+    name:
+      - htop
+      - tree
+  become: true
