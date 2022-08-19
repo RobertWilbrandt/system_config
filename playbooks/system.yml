@@ -4,3 +4,4 @@
     - role: keyboard_layout
     - role: gpg
     - role: shell
+    - role: vim
