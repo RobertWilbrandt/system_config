@@ -70,7 +70,9 @@ let g:ycm_max_diagnostics_to_display = 0
 if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
 endif
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+if executable('latex')
+    let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+endif
 
 " vim airline
 let g:airline#extensions#tabline#enabled = 1
