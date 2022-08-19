@@ -1,0 +1,31 @@
+---
+- name: Install necessary packages
+  apt:
+    name:
+      - zsh
+      - curl
+  become: true
+
+- name: Set zsh as default shell
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /bin/zsh
+  become: true
+
+
+- name: Install oh-my-zsh
+  shell:
+    cmd: "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+    creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+
+- name: Copy shell config files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}"
+  with_filetree: "config"
+
+- name: Copy profile plugins
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/.profile_plugins/"
+  with_filetree: "profile_plugins"

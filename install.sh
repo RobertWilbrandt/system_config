@@ -36,7 +36,7 @@ cd ..
 
 echo "Stowing configuration..."
 
-stow_dirs="shell vim profile_plugins gpg git_config"
+stow_dirs="shell vim profile_plugins git_config"
 
 for dir in "$stow_dirs" ; do
   stow $dir

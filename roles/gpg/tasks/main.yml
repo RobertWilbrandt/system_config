@@ -1,0 +1,11 @@
+---
+- name: Install gpg
+  apt:
+    name: "gpg"
+  become: true
+
+- name: Copy gpg config
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/.gnupg"
+  with_filetree: "gnupg"

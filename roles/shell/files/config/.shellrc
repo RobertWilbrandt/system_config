@@ -1,0 +1,10 @@
+source $HOME/.profile_plugins/forgit.sh
+
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
+
+# Load local shellrc if such a file exists
+if [ -f "$HOME/.shellrc_local" ];
+then
+  source "$HOME/.shellrc_local"
+fi
