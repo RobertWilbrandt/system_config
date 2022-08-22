@@ -4,9 +4,15 @@
     name: "gpg"
   become: true
 
+- name: Create gnupg folder with adequate access rights
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.gnupg"
+    state: directory
+    mode: 0700
+
 - name: Copy gpg config
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ ansible_env.HOME }}/.gnupg/"
-    mode: preserve
+    mode: 0600
   with_filetree: "./"
