@@ -1,6 +1,6 @@
 ---
 - name: Install common tools
-  apt:
+  ansible.builtin.apt:
     name:
       - htop
       - tree

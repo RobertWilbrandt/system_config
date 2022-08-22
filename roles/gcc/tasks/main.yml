@@ -1,13 +1,13 @@
 ---
 - name: Install gcc and g++ 12
-  apt:
+  ansible.builtin.apt:
     name:
       - gcc-12
       - g++-12
   become: true
 
 - name: Add alternatives for gcc and g++
-  alternatives:
+  community.general.alternatives:
     name: "{{ item.name }}"
     link: "{{ item.link }}"
     path: "{{ item.path }}"

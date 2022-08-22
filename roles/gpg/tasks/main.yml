@@ -1,11 +1,12 @@
 ---
 - name: Install gpg
-  apt:
+  ansible.builtin.apt:
     name: "gpg"
   become: true
 
 - name: Copy gpg config
-  copy:
+  ansible.builtin.copy:
     src: "{{ item.src }}"
-    dest: "{{ ansible_env.HOME }}/.gnupg"
-  with_filetree: "gnupg"
+    dest: "{{ ansible_env.HOME }}/.gnupg/"
+    mode: preserve
+  with_filetree: "./"

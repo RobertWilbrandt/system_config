@@ -1,14 +1,10 @@
 ---
 - name: Set keyboard layout
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: '/etc/default/keyboard'
-    regexp: '^XKBLAYOUT='
-    line: 'XKBLAYOUT="{{ layout }}"'
-  become: yes
-
-- name: Set keyboard variant
-  lineinfile:
-    path: '/etc/default/keyboard'
-    regexp: '^XKBVARIANT='
-    line: 'XKBVARIANT="{{ variant }}"'
-  become: yes
+    regexp: '^{{ item.key }}='
+    line: '{{ item.key }}="{{ item.value }}"'
+  loop:
+    - { key: "XKBLAYOUT", value: "{{ layout }}" }
+    - { key: "XKBVARIANT", value: "{{ variant }}" }
+  become: true

@@ -1,15 +1,15 @@
 ---
 - name: Install vim and ycm requirements
-  apt:
+  ansible.builtin.apt:
     name:
       - vim
       - python3
       - gcc
       - python3-pip
-  become:  true
+  become: true
 
 - name: Install additional dependencies of vim configuration
-  pip:
+  ansible.builtin.pip:
     name:
       - cmake
       - black
@@ -18,15 +18,17 @@
       - gitpython
 
 - name: Create vim config directories
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/{{ item.path }}"
     state: directory
-  with_filetree: "config"
+    mode: "{{ item.mode }}"
+  with_filetree: ./
   when: item.state == "directory"
 
 - name: Copy vim config files
-  copy:
+  ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ ansible_env.HOME }}/{{ item.path }}"
-  with_filetree: "config"
+    mode: preserve
+  with_filetree: ./
   when: item.state == 'file'

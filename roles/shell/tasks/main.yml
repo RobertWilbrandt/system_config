@@ -1,31 +1,35 @@
 ---
 - name: Install necessary packages
-  apt:
+  ansible.builtin.apt:
     name:
       - zsh
       - curl
   become: true
 
 - name: Set zsh as default shell
-  user:
+  ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
     shell: /bin/zsh
   become: true
 
 
 - name: Install oh-my-zsh
-  shell:
+  ansible.builtin.shell:
     cmd: "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
     creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
 - name: Copy shell config files
-  copy:
+  ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ ansible_env.HOME }}"
-  with_filetree: "config"
+    mode: preserve
+  with_filetree:
+    - "./config/"
 
 - name: Copy profile plugins
-  copy:
+  ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ ansible_env.HOME }}/.profile_plugins/"
-  with_filetree: "profile_plugins"
+    mode: preserve
+  with_filetree:
+    - "./profile_plugins/"
