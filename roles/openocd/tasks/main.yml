@@ -52,3 +52,17 @@
     chdir: "{{ openocd_clone_dir }}"
     target: install
   become: true
+
+- name: Install udev rules
+  ansible.builtin.copy:
+    src: "{{ openocd_clone_dir }}/contrib/60-openocd.rules"
+    dest: "/etc/udev/rules.d"
+    mode: preserve
+  become: true
+
+- name: Add user to plugdev group
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    groups: plugdev
+    append: true
+  become: true
