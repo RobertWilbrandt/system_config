@@ -1,0 +1,8 @@
+---
+- hosts: all
+  roles:
+    - role: gcc
+    - role: openocd
+      vars:
+        openocd_configure_flags:
+          - --enable-cmsis-dap

@@ -1,0 +1,54 @@
+---
+- name: Install dependencies
+  ansible.builtin.apt:
+    name:
+      - libtool
+      - pkg-config
+      - autoconf
+      - automake
+      - git
+      - libhidapi-dev  # Needed for cmsis-dap
+      - libusb-1.0-0-dev
+  become: true
+
+- name: Remove openocd package
+  ansible.builtin.apt:
+    name: openocd
+    state: absent
+  become: true
+
+- name: Clone openocd source
+  ansible.builtin.git:
+    repo: "{{ openocd_repo }}"
+    version: "{{ openocd_version }}"
+    dest: "{{ openocd_clone_dir }}"
+
+- name: Ignore jimtcl changes during build process
+  ansible.builtin.lineinfile:
+    path: "{{ openocd_clone_dir }}/.git/modules/jimtcl/info/exclude"
+    line: "{{ item }}"
+  loop:
+    - jimtcl.pc
+    - tests/Makefile
+
+- name: Bootstrap openocd
+  ansible.builtin.command:
+    cmd: "./bootstrap"
+    chdir: "{{ openocd_clone_dir }}"
+    creates: "{{ openocd_clone_dir }}/configure"
+
+- name: Configure openocd
+  ansible.builtin.command:
+    argv: "{{ ['./configure'] + openocd_configure_default_flags + openocd_configure_flags }}"
+    chdir: "{{ openocd_clone_dir }}"
+    creates: "{{ openocd_clone_dir }}/Makefile"
+
+- name: Build openocd
+  community.general.make:
+    chdir: "{{ openocd_clone_dir }}"
+
+- name: Install openocd
+  community.general.make:
+    chdir: "{{ openocd_clone_dir }}"
+    target: install
+  become: true

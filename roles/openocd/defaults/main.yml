@@ -1,0 +1,7 @@
+---
+configure_flags: ""
+
+openocd_configure_default_flags:
+  - --disable-werror  # Currently needed with gcc-12
+
+openocd_configure_flags: []

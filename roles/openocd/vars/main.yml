@@ -1,0 +1,5 @@
+---
+openocd_repo: https://git.code.sf.net/p/openocd/code
+openocd_version: v0.11.0
+
+openocd_clone_dir: "{{ ansible_env.HOME }}/system/openocd"
